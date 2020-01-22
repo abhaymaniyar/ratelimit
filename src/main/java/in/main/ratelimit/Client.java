@@ -1,4 +1,4 @@
-package ch.rasc.ratelimit;
+package in.main.ratelimit;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,10 +23,10 @@ public class Client {
   private final static HttpClient httpClient = HttpClient.newHttpClient();
 
   public static void main(String[] args) throws InterruptedException {
-     lastClient();
+     helloClient();
   }
 
-  private static void lastClient() {
+  private static void helloClient() {
     System.out.println("/hello");
     for (int i = 0; i < 11; i++) {
       get(SERVER_1 + "/hello");

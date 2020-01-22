@@ -1,4 +1,4 @@
-package ch.rasc.ratelimit;
+package in.main.ratelimit;
 
 import java.util.concurrent.TimeUnit;
 

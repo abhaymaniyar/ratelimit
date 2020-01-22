@@ -9,7 +9,7 @@
     <version>2.2.2.RELEASE</version>
     <relativePath />
   </parent>
-  <groupId>ch.rasc</groupId>
+  <groupId>in.main</groupId>
   <artifactId>ratelimit</artifactId>
   <version>0.0.1</version>
   <name>ratelimit</name>
@@ -21,19 +21,7 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jooq</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
     </dependency>
     <dependency>
       <groupId>com.univocity</groupId>
@@ -44,19 +32,6 @@
       <groupId>com.github.vladimir-bukhtoyarov</groupId>
       <artifactId>bucket4j-core</artifactId>
       <version>4.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.vladimir-bukhtoyarov</groupId>
-      <artifactId>bucket4j-hazelcast</artifactId>
-      <version>4.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast-spring</artifactId>
     </dependency>
     <dependency>
       <groupId>javax.cache</groupId>
@@ -77,66 +52,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>jooq</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen-maven</artifactId>
-            <version>3.12.3</version>
-            <executions>
-              <execution>
-                <id>generate-jooq-sources</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-                <configuration>
-                  <generator>
-                    <generate>
-                      <pojos>true</pojos>
-                      <daos>false</daos>
-                      <javaTimeTypes>true</javaTimeTypes>
-                    </generate>
-                    <database>
-                      <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
-                      <inputCatalog></inputCatalog>
-                      <inputSchema>PUBLIC</inputSchema>
-                      <outputSchemaToDefault>true</outputSchemaToDefault>
-                      <outputCatalogToDefault>true</outputCatalogToDefault>
-                      <properties>
-                        <property>
-                          <key>sort</key>
-                          <value>semantic</value>
-                        </property>
-                        <property>
-                          <key>scripts</key>
-                          <value>src/main/resources/db/migration/*</value>
-                        </property>
-                      </properties>
-                    </database>
-                    <target>
-                      <clean>true</clean>
-                      <packageName>ch.rasc.ratelimit.db</packageName>
-                      <directory>src/main/java</directory>
-                    </target>
-                  </generator>
-                </configuration>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-meta-extensions</artifactId>
-                <version>3.12.3</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
